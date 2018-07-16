@@ -20,21 +20,32 @@ public class AccountSearchHelper {
         List<Frame> frames = new ArrayList<>();
         frames.add(new Frame("account_number", "long", "not_analyzed", null));
         frames.add(new Frame("balance", "long", "not_analyzed", null));
-        frames.add(new Frame("firstname", "String", "not_analyzed", null));
-        frames.add(new Frame("lastname", "String", "not_analyzed", null));
+        frames.add(new Frame("firstname", "keyword", "not_analyzed", null));
+        frames.add(new Frame("lastname", "keyword", "not_analyzed", null));
         frames.add(new Frame("age", "long", "not_analyzed", null));
-        frames.add(new Frame("gender", "String", "not_analyzed", null));
-        frames.add(new Frame("address", "String", "analyzed", "snowball"));
-        frames.add(new Frame("employer", "String", "not_analyzed", null));
-        frames.add(new Frame("email", "String", "not_analyzed", null));
-        frames.add(new Frame("city", "String", "not_analyzed", null));
-        frames.add(new Frame("state", "String", "not_analyzed", null));
+        frames.add(new Frame("gender", "keyword", "not_analyzed", null));
+        frames.add(new Frame("address", "text", "analyzed", "snowball"));
+        frames.add(new Frame("employer", "keyword", "not_analyzed", null));
+        frames.add(new Frame("email", "keyword", "not_analyzed", null));
+        frames.add(new Frame("city", "keyword", "not_analyzed", null));
+        frames.add(new Frame("state", "keyword", "not_analyzed", null));
 
 
         try {
             XContentBuilder builder = XContentFactory.jsonBuilder().startObject();
-            builder.startObject("_all").field("enable","false").endObject();
-
+            builder.startObject("_all").field("enabled","false").endObject();
+            builder.startObject("properties");
+            for (Frame frame :frames){
+                builder.startObject(frame.name)
+                        .field("type",frame.type)
+                        .field("index",frame.index);
+                if (null!=frame.analyzer){
+                    builder.field("analyzer",frame.analyzer);
+                }
+                builder.endObject();
+            }
+            builder.endObject().endObject();
+            ACCOUNT_MAPPING = builder.string();
         } catch (IOException e1) {
             e1.printStackTrace();
         }

@@ -54,13 +54,20 @@ public class AccountSearchInitEsFactory {
             String[] addressArray = esAddressHostPorts.split(",");
             for (String esAddressHostPort : addressArray) {
                 String[] a = esAddressHostPort.split(":");
-                client.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(a[0]), Integer.valueOf(a[1])));
+                client.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(a[0]), 9300));
             }
         } catch (UnknownHostException e) {
             throw new RuntimeException(e);
         }
+        initIndex(client,indexName,AccountSearchHelper.TYPE_NAME,AccountSearchHelper.ACCOUNT_MAPPING);
+        return new AccountSearchServiceImpl(indexName,AccountSearchHelper.TYPE_NAME,client);
 
-        return null;
+    }
 
+    private static void initIndex(TransportClient client, String indexName, String typeName, String accountMapping) {
+        //index is not exist，then create
+        if (!client.admin().indices().prepareExists(indexName).get().isExists()){
+            client.admin().indices().prepareCreate(indexName).addMapping(typeName,accountMapping).get();
+        }
     }
 }

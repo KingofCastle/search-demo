@@ -5,8 +5,6 @@ import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.client.transport.TransportClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
-
 import java.io.Closeable;
 import java.io.IOException;
 
@@ -16,11 +14,13 @@ import java.io.IOException;
  **/
 public class AccountSearchServiceImpl implements AccountSearchService, Closeable {
     private Logger logger = LoggerFactory.getLogger(AccountSearchServiceImpl.class);
-    public static String INDEX_NAME = "bank";
-    public static String TYPE_NAME = "account";
+    private String INDEX_NAME;
+    private String TYPE_NAME;
     private TransportClient client;
 
-    public AccountSearchServiceImpl(TransportClient client) {
+    public AccountSearchServiceImpl(String INDEX_NAME, String TYPE_NAME, TransportClient client) {
+        this.INDEX_NAME = INDEX_NAME;
+        this.TYPE_NAME = TYPE_NAME;
         this.client = client;
     }
 

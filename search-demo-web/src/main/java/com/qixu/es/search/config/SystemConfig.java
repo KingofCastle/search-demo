@@ -2,18 +2,21 @@ package com.qixu.es.search.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
 
 /**
  * @author castle
  * @date 2018/7/9
  **/
 @Configuration
+@PropertySource("classpath:systemConfig.properties")
 public class SystemConfig {
     @Value("${es.address.host.ports}")
     private String esAddressHostPorts;
     @Value("${cluster.name}")
     private String clusterName;
-    @Value("{index.name}")
+    @Value("${index.name}")
     private String indexName;
 
     @Value("${es.username}")
