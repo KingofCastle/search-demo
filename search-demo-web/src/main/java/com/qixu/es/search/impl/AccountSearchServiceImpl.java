@@ -1,12 +1,19 @@
 package com.qixu.es.search.impl;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qixu.es.search.dto.*;
 import org.elasticsearch.action.search.SearchRequestBuilder;
+import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;
+import org.elasticsearch.search.SearchHit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.io.Closeable;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author castle
@@ -23,17 +30,37 @@ public class AccountSearchServiceImpl implements AccountSearchService, Closeable
         this.TYPE_NAME = TYPE_NAME;
         this.client = client;
     }
-
+    public  static ObjectMapper objectMapper = new ObjectMapper();
+    static{
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
+    }
     @Override
     public PageDTO<SearchAccountModel> search(SearchSet searchSet) {
         logger.info("begin search account:{}", searchSet.toString());
         //取得搜索条件
         SearchCondition condition = searchSet.getSearchCondition();
+        //暂时只分页
         SortModel sortModel = searchSet.getSortModel();
 
         //TODO
-        SearchRequestBuilder requestBuilder = null;
-        return null;
+        SearchRequestBuilder requestBuilder = initSearch().setQuery(ElasticSearchHelper.queryBuilder(condition))
+                .setFrom((sortModel.getPageNo() - 1) * sortModel.getPageSize()).setSize(sortModel.getPageSize());
+
+        SearchResponse response = requestBuilder.get();
+        List<SearchAccountModel> accountModels = new ArrayList<>();
+        for (SearchHit hit : response.getHits()) {
+            String source = hit.getSourceAsString();
+            if (null != source && source.length() > 0) {
+                try {
+                    SearchAccountModel model =  objectMapper.readValue(source,SearchAccountModel.class);
+                    accountModels.add(model);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        logger.info("pageNo:{}, pageSize:{}, totalSize:{}",sortModel.getPageNo(), sortModel.getPageSize(), response.getHits().getTotalHits());
+        return new PageDTO<>(sortModel.getPageNo(), sortModel.getPageSize(),response.getHits().getTotalHits(),accountModels);
     }
 
 

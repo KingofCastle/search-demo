@@ -1,5 +1,7 @@
 package com.qixu.es.search.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 
 /**
@@ -8,9 +10,12 @@ import java.io.Serializable;
  * account数据来源网络
  **/
 public class SearchAccountModel implements Serializable {
+    @JsonProperty("account_number")
     Long accountNumber;
     Long balance;
+    @JsonProperty("firstname")
     String firstName;
+    @JsonProperty("lastname")
     String lastName;
     Integer age;
     String gender;
