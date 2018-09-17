@@ -16,13 +16,24 @@ public class SystemConfig {
     private String esAddressHostPorts;
     @Value("${cluster.name}")
     private String clusterName;
-    @Value("${index.name}")
-    private String indexName;
+    @Value("${index.bank}")
+    private String indexBank;
+    @Value("${index.goods}")
+    private String indexGoods;
 
     @Value("${es.username}")
     private String esUserName;
     @Value("${es.password}")
     private String esPassword;
+
+    @Value("${datasource.url}")
+    private String dataSourceUrl;
+
+    @Value("${datasource.username}")
+    private String dataSourceUserName;
+
+    @Value("${datasource.password}")
+    private String dataSourcePassword;
 
     public String getEsAddressHostPorts() {
         return esAddressHostPorts;
@@ -40,12 +51,20 @@ public class SystemConfig {
         this.clusterName = clusterName;
     }
 
-    public String getIndexName() {
-        return indexName;
+    public String getIndexBank() {
+        return indexBank;
     }
 
-    public void setIndexName(String indexName) {
-        this.indexName = indexName;
+    public void setIndexBank(String indexBank) {
+        this.indexBank = indexBank;
+    }
+
+    public String getIndexGoods() {
+        return indexGoods;
+    }
+
+    public void setIndexGoods(String indexGoods) {
+        this.indexGoods = indexGoods;
     }
 
     public String getEsUserName() {
@@ -62,5 +81,29 @@ public class SystemConfig {
 
     public void setEsPassword(String esPassword) {
         this.esPassword = esPassword;
+    }
+
+    public String getDataSourceUrl() {
+        return dataSourceUrl;
+    }
+
+    public void setDataSourceUrl(String dataSourceUrl) {
+        this.dataSourceUrl = dataSourceUrl;
+    }
+
+    public String getDataSourceUserName() {
+        return dataSourceUserName;
+    }
+
+    public void setDataSourceUserName(String dataSourceUserName) {
+        this.dataSourceUserName = dataSourceUserName;
+    }
+
+    public String getDataSourcePassword() {
+        return dataSourcePassword;
+    }
+
+    public void setDataSourcePassword(String dataSourcePassword) {
+        this.dataSourcePassword = dataSourcePassword;
     }
 }
