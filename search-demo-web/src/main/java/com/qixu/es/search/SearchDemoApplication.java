@@ -48,10 +48,6 @@ public class SearchDemoApplication {
         ds.setTestOnReturn(true);
         ds.setValidationQuery("SELECT 1");
 
-//        ds.setUrl("jdbc:mysql://172.16.1.181:3306/tbb_account?characterEncoding=utf-8");
-//        ds.setUsername("tbb_account");
-//        ds.setPassword("tbb_account");
-
         return ds;
     }
 }

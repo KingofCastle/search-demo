@@ -21,4 +21,22 @@ public interface GoodsFrameBarcodeRepository extends JpaRepository<GoodsFrameBar
 
     @Query(value = "SELECT * FROM goods_frame_barcode WHERE merchantid = ?1 AND storeid = ?2 AND goodsid = ?3 AND barcode = ?4", nativeQuery = true)
     GoodsFrameBarcodeEntity findBarcode(Integer merchantId, String storeId, String goodsId, String barcode);
+
+
+    @Query(nativeQuery = true, value = "SELECT \n" +
+            "f.merchantid,\n" +
+            "f.goodsid,\n" +
+            "f.storeid,\n" +
+            "f.barcode,\n" +
+            "f.price,\n" +
+            "g.unit,\n" +
+            "g.`name`\n" +
+            "FROM\n" +
+            "goods_frame_barcode f\n" +
+            "LEFT JOIN\n" +
+            "goods g ON \n" +
+            "f.merchantid = g.merchantid AND f.goodsid = g.goodsid\n" +
+            "WHERE\n" +
+            "f.merchantid=?1 ")
+    List<Object> findAllGoods(Integer merchantId);
 }

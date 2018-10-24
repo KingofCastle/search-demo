@@ -5,5 +5,5 @@ package com.qixu.es.search.annotation;
  * @date 2018/7/9
  **/
 public enum QueryMethod {
-    MATCH,TERM,TERMs,RANGE
+    MATCH,TERM,TERMS,RANGE
 }

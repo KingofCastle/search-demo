@@ -1,9 +1,6 @@
 package com.qixu.es.search.controller;
 
-import com.qixu.es.search.dto.PageDTO;
-import com.qixu.es.search.dto.SearchAccountModel;
-import com.qixu.es.search.dto.SearchGoodsModel;
-import com.qixu.es.search.dto.SearchSet;
+import com.qixu.es.search.dto.*;
 import com.qixu.es.search.impl.AccountSearchService;
 import com.qixu.es.search.impl.GoodsSearchService;
 import com.qixu.es.search.service.GoodsService;
@@ -29,6 +26,14 @@ public class SearchDemoController {
     /**
      * 搜索商品
      */
+    @PostMapping(value = "search/goods")
+    PageDTO<SearchAccountModel> searchGoods(@Valid @RequestBody SearchGoodsSet searchGoodsSet) {
+        return goodsSearchService.search(searchGoodsSet);
+    }
+
+    /**
+     * 搜索商品
+     */
     @PostMapping(value = "search/account")
     PageDTO<SearchAccountModel> search(@Valid @RequestBody SearchSet searchSet) {
         return accountSearchService.search(searchSet);
@@ -47,18 +52,18 @@ public class SearchDemoController {
     @GetMapping(value = "/index/db")
     public String indexGoodsFromDB(@RequestParam Integer merchantId) {
         //先找到所有的goodsId
-        List<String> goodsIds = goodsService.findGoodsId(merchantId);
+//        List<String> goodsIds = goodsService.findGoodsId(merchantId);
         //对每个goodsid查找对应barcode
-        if (goodsIds != null && goodsIds.size() > 0) {
-            for (int i = 0; i < goodsIds.size(); i++) {
-                List<SearchGoodsModel> models = goodsService.findFrameBarcode(merchantId, goodsIds.get(i));
+//        if (goodsIds != null && goodsIds.size() > 0) {
+//            for (int i = 0; i < goodsIds.size(); i++) {
+                List<SearchGoodsModel> models = goodsService.findFrameBarcode(merchantId);
                 if (models != null) {
                     models.stream().forEach(model -> {
                         goodsSearchService.indexGoods(model);
                     });
                 }
-            }
-        }
+//            }
+//        }
         return "ok";
     }
 }

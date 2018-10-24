@@ -4,18 +4,17 @@ import com.qixu.es.search.annotation.CompareOperation;
 import com.qixu.es.search.annotation.EsSearch;
 import com.qixu.es.search.annotation.QueryMethod;
 import com.qixu.es.search.annotation.Range;
+import com.qixu.es.search.dto.SearchAccountCondition;
 import com.qixu.es.search.dto.SearchCondition;
+import com.qixu.es.search.dto.SearchGoodsCondition;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.RangeQueryBuilder;
-import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Field;
 import java.util.Collection;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
-import static org.elasticsearch.index.query.QueryBuilders.matchAllQuery;
-import static org.elasticsearch.index.query.QueryBuilders.termsQuery;
 
 /**
  * @author castle
@@ -23,8 +22,17 @@ import static org.elasticsearch.index.query.QueryBuilders.termsQuery;
  **/
 public class ElasticSearchHelper {
 
-    public static QueryBuilder queryBuilder(SearchCondition condition) {
+    public static QueryBuilder queryBuilder(SearchAccountCondition condition) {
         //构建查询条件
+        return genQueryBuilder(condition);
+    }
+
+    public static QueryBuilder queryBuilder(SearchGoodsCondition condition) {
+        //构建查询条件
+        return genQueryBuilder(condition);
+    }
+
+    private static QueryBuilder genQueryBuilder(SearchCondition condition) {
         BoolQueryBuilder boolQueryBuilder = boolQuery();
         for (Field field : condition.getClass().getDeclaredFields()) {
             try {
@@ -40,7 +48,7 @@ public class ElasticSearchHelper {
                     queryBuilder = matchQuery(queryName, value);
                 } else if (QueryMethod.TERM == esSearchInfo.method()) {
                     queryBuilder = termQuery(queryName, value);
-                } else if (QueryMethod.TERMs == esSearchInfo.method()) {
+                } else if (QueryMethod.TERMS == esSearchInfo.method()) {
                     if (value instanceof Collection) {
                         queryBuilder = termsQuery(queryName, (Collection) value);
                     } else {

@@ -1,8 +1,9 @@
 package com.qixu.es.search.impl;
 
+import com.qixu.es.search.dto.PageDTO;
+import com.qixu.es.search.dto.SearchAccountModel;
 import com.qixu.es.search.dto.SearchGoodsModel;
-
-import java.util.List;
+import com.qixu.es.search.dto.SearchGoodsSet;
 
 /**
  * @author castle
@@ -15,4 +16,6 @@ public interface GoodsSearchService {
      * @param goods
      */
     void indexGoods(SearchGoodsModel goods);
+
+    PageDTO<SearchAccountModel> search(SearchGoodsSet searchGoodsSet);
 }

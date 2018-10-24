@@ -21,6 +21,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -100,24 +101,43 @@ public class GoodsService {
 //        return null;
     }
 
-    public List<SearchGoodsModel> findFrameBarcode(Integer merchantId, String goodsid) {
+    public List<SearchGoodsModel> findFrameBarcode(Integer merchantId) {
         List<SearchGoodsModel> models = null;
-        List<GoodsFrameBarcodeEntity> barcodeEntities = barcodeRepository.findBymerchantIdAndGoodsId(merchantId, goodsid);
+        List<Object> barcodeEntities = barcodeRepository.findAllGoods(merchantId);
         if (barcodeEntities != null && barcodeEntities.size() > 0) {
             models = new ArrayList<>();
             for (int i = 0; i < barcodeEntities.size(); i++) {
-                GoodsFrameBarcodeEntity barcodeEntity = barcodeEntities.get(i);
+                Object[] rowArray = (Object[]) barcodeEntities.get(i);
                 SearchGoodsModel model = new SearchGoodsModel();
-                model.setMerchantId(barcodeEntity.getMerchantId());
-                model.setGoodsId(barcodeEntity.getGoodsId());
-                model.setCategoryId(barcodeEntity.getSpecId());
-                model.setUnit(barcodeEntity.getUnit());
-                model.setPrice(barcodeEntity.getPrice());
-                model.setBarcode(barcodeEntity.getBarcode());
-                model.setStoreId(Long.valueOf(barcodeEntity.getStoreId()));
+                model.setMerchantId((Integer) rowArray[0]);
+                model.setGoodsId((String) rowArray[1]);
+                model.setStoreId(Long.valueOf((String) rowArray[2]));
+                model.setBarcode((String) rowArray[3]);
+                model.setPrice(Double.valueOf(((BigDecimal) rowArray[4]).doubleValue()));
+                model.setUnit((String) rowArray[5]);
+                model.setName((String) rowArray[6]);
                 models.add(model);
             }
         }
+
+
+//        List<GoodsFrameBarcodeEntity> barcodeEntities = barcodeRepository.findBymerchantIdAndGoodsId(merchantId, goodsid);
+//        if (barcodeEntities != null && barcodeEntities.size() > 0) {
+//            models = new ArrayList<>();
+//            for (int i = 0; i < barcodeEntities.size(); i++) {
+//                GoodsFrameBarcodeEntity barcodeEntity = barcodeEntities.get(i);
+//                SearchGoodsModel model = new SearchGoodsModel();
+//                model.setMerchantId(barcodeEntity.getMerchantId());
+//                model.setGoodsId(barcodeEntity.getGoodsId());
+//                model.setCategoryId(barcodeEntity.getSpecId());
+//                model.setUnit(barcodeEntity.getUnit());
+//                model.setPrice(barcodeEntity.getPrice());
+//                model.setBarcode(barcodeEntity.getBarcode());
+//                model.setStoreId(Long.valueOf(barcodeEntity.getStoreId()));
+//                model.setName(barcodeEntity.getName());
+//                models.add(model);
+//            }
+//        }
         return models;
     }
 }

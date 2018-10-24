@@ -38,7 +38,7 @@ public class AccountSearchServiceImpl implements AccountSearchService, Closeable
     public PageDTO<SearchAccountModel> search(SearchSet searchSet) {
         logger.info("begin search account:{}", searchSet.toString());
         //取得搜索条件
-        SearchCondition condition = searchSet.getSearchCondition();
+        SearchAccountCondition condition = searchSet.getSearchAccountCondition();
         //暂时只分页
         SortModel sortModel = searchSet.getSortModel();
 

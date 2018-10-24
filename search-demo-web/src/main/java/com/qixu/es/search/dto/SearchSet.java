@@ -7,18 +7,18 @@ import java.io.Serializable;
  * @date 2018/7/9
  **/
 public class SearchSet implements Serializable {
-    private SearchCondition searchCondition;
+    private SearchAccountCondition searchAccountCondition;
     private SortModel sortModel;
 
     public SearchSet() {
     }
 
-    public SearchCondition getSearchCondition() {
-        return searchCondition;
+    public SearchAccountCondition getSearchAccountCondition() {
+        return searchAccountCondition;
     }
 
-    public void setSearchCondition(SearchCondition searchCondition) {
-        this.searchCondition = searchCondition;
+    public void setSearchAccountCondition(SearchAccountCondition searchAccountCondition) {
+        this.searchAccountCondition = searchAccountCondition;
     }
 
     public SortModel getSortModel() {
@@ -32,7 +32,7 @@ public class SearchSet implements Serializable {
     @Override
     public String toString() {
         return "SearchSet{" +
-                "searchCondition=" + searchCondition +
+                "searchAccountCondition=" + searchAccountCondition +
                 ", sortModel=" + sortModel +
                 '}';
     }
