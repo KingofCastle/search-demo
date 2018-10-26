@@ -2,7 +2,11 @@ package com.qixu.es.search.impl;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.qixu.es.search.dto.*;
+import com.qixu.es.search.api.dto.SearchAccountCondition;
+import com.qixu.es.search.api.dto.SearchAccountModel;
+import com.qixu.es.search.api.dto.SearchSet;
+import com.qixu.es.search.api.dto.SortModel;
+import com.qixu.es.search.api.dto.PageDTO;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;

@@ -1,4 +1,4 @@
-package com.qixu.es.search.annotation;
+package com.qixu.es.search.api.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

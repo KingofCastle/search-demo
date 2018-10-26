@@ -1,3 +1,5 @@
 .idea/
 search-demo-web/search-demo-web.iml
 search-demo-web/target/
+search-demo-api/target/
+search-demo-api/search-demo-api.iml

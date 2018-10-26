@@ -1,11 +1,8 @@
-package com.qixu.es.search.dto;
+package com.qixu.es.search.api.dto;
 
-import com.qixu.es.search.annotation.CompareOperation;
-import com.qixu.es.search.annotation.EsSearch;
-import com.qixu.es.search.annotation.QueryMethod;
-import com.qixu.es.search.annotation.Range;
 
-import java.io.Serializable;
+import com.qixu.es.search.api.annotation.EsSearch;
+import com.qixu.es.search.api.annotation.QueryMethod;
 
 /**
  * @author castle

@@ -1,9 +1,9 @@
 package com.qixu.es.search.impl;
 
-import com.qixu.es.search.dto.PageDTO;
-import com.qixu.es.search.dto.SearchAccountModel;
-import com.qixu.es.search.dto.SearchGoodsModel;
-import com.qixu.es.search.dto.SearchGoodsSet;
+import com.qixu.es.search.api.dto.SearchAccountModel;
+import com.qixu.es.search.api.dto.SearchGoodsModel;
+import com.qixu.es.search.api.dto.SearchGoodsSet;
+import com.qixu.es.search.api.dto.PageDTO;
 
 /**
  * @author castle

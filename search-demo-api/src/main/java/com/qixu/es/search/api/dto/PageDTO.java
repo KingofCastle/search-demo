@@ -1,4 +1,4 @@
-package com.qixu.es.search.dto;
+package com.qixu.es.search.api.dto;
 
 import java.io.Serializable;
 import java.util.ArrayList;

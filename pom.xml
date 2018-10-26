@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>search-demo-web</module>
+        <module>search-demo-api</module>
     </modules>
 
     <properties>
@@ -85,6 +86,20 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <!-- 发布仓库配置 -->
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <name>user release resp</name>
+            <url>http://114.55.112.30:8180/nexus/content/repositories/releases/</url>
+        </repository>
+
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>user snapshot</name>
+            <url>http://114.55.112.30:8180/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
     <build>
         <plugins>
             <plugin>

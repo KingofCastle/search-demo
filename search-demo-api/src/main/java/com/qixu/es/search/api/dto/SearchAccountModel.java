@@ -1,4 +1,4 @@
-package com.qixu.es.search.dto;
+package com.qixu.es.search.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

@@ -1,8 +1,7 @@
 package com.qixu.es.search.service;
 
-import com.qixu.es.search.dto.PageDTO;
-import com.qixu.es.search.dto.Price;
-import com.qixu.es.search.dto.SearchGoodsModel;
+import com.qixu.es.search.api.dto.SearchGoodsModel;
+import com.qixu.es.search.api.dto.PageDTO;
 import com.qixu.es.search.entity.GoodsEntity;
 import com.qixu.es.search.entity.GoodsFrameBarcodeEntity;
 import com.qixu.es.search.repository.GoodsFrameBarcodeRepository;
@@ -10,9 +9,6 @@ import com.qixu.es.search.repository.GoodsRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +19,6 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**

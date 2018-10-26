@@ -1,4 +1,4 @@
-package com.qixu.es.search.annotation;
+package com.qixu.es.search.api.annotation;
 
 /**
  * @author castle

@@ -1,12 +1,12 @@
 package com.qixu.es.search.impl;
 
-import com.qixu.es.search.annotation.CompareOperation;
-import com.qixu.es.search.annotation.EsSearch;
-import com.qixu.es.search.annotation.QueryMethod;
-import com.qixu.es.search.annotation.Range;
-import com.qixu.es.search.dto.SearchAccountCondition;
-import com.qixu.es.search.dto.SearchCondition;
-import com.qixu.es.search.dto.SearchGoodsCondition;
+import com.qixu.es.search.api.dto.SearchAccountCondition;
+import com.qixu.es.search.api.dto.SearchCondition;
+import com.qixu.es.search.api.dto.SearchGoodsCondition;
+import com.qixu.es.search.api.annotation.CompareOperation;
+import com.qixu.es.search.api.annotation.EsSearch;
+import com.qixu.es.search.api.annotation.QueryMethod;
+import com.qixu.es.search.api.annotation.Range;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.RangeQueryBuilder;
