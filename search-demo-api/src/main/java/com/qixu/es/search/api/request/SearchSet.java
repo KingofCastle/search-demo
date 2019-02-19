@@ -1,4 +1,7 @@
-package com.qixu.es.search.api.dto;
+package com.qixu.es.search.api.request;
+
+import com.qixu.es.search.api.request.SearchAccountCondition;
+import com.qixu.es.search.api.request.SortModel;
 
 import java.io.Serializable;
 

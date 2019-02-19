@@ -4,6 +4,7 @@ import com.qixu.es.search.config.SystemConfig;
 import com.qixu.es.search.impl.AccountSearchInitEsFactory;
 import com.qixu.es.search.impl.AccountSearchService;
 import com.qixu.es.search.impl.GoodsSearchService;
+import com.qixu.es.search.impl.LogSearchService;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -11,6 +12,8 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
+
 /**
  * @author castle
  * @date 2018/7/9
@@ -18,6 +21,7 @@ import org.springframework.context.annotation.Configuration;
 @SpringBootApplication
 @EnableAutoConfiguration
 @Configuration
+@EnableScheduling
 public class SearchDemoApplication {
     @Autowired
     private SystemConfig systemConfig;
@@ -27,14 +31,21 @@ public class SearchDemoApplication {
     }
 
     @Bean
-    public AccountSearchService accountSearchService() {
-        return AccountSearchInitEsFactory.elasticSearchAccountService(systemConfig);
+    public LogSearchService logSearchService() {
+        return null;
+//        return AccountSearchInitEsFactory.elasticSearchLogService(systemConfig);
     }
 
-    @Bean
-    public GoodsSearchService goodsSearchService() {
-        return AccountSearchInitEsFactory.elasticSearchGoodsService(systemConfig);
-    }
+
+    //    @Bean
+//    public AccountSearchService accountSearchService() {
+//        return AccountSearchInitEsFactory.elasticSearchAccountService(systemConfig);
+//    }
+//
+//    @Bean
+//    public GoodsSearchService goodsSearchService() {
+//        return AccountSearchInitEsFactory.elasticSearchGoodsService(systemConfig);
+//    }
     @Bean
     public DataSource dataSource() {
         DataSource ds = new DataSource();

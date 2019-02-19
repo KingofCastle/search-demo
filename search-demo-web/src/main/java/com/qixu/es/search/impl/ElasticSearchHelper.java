@@ -1,12 +1,13 @@
 package com.qixu.es.search.impl;
 
-import com.qixu.es.search.api.dto.SearchAccountCondition;
-import com.qixu.es.search.api.dto.SearchCondition;
-import com.qixu.es.search.api.dto.SearchGoodsCondition;
+import com.qixu.es.search.api.request.SearchAccountCondition;
+import com.qixu.es.search.api.request.SearchCondition;
+import com.qixu.es.search.api.request.SearchGoodsCondition;
 import com.qixu.es.search.api.annotation.CompareOperation;
 import com.qixu.es.search.api.annotation.EsSearch;
 import com.qixu.es.search.api.annotation.QueryMethod;
 import com.qixu.es.search.api.annotation.Range;
+import com.qixu.es.search.api.request.SearchLogCondition;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.RangeQueryBuilder;
@@ -22,13 +23,18 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
  **/
 public class ElasticSearchHelper {
 
-    public static QueryBuilder queryBuilder(SearchAccountCondition condition) {
+    public static QueryBuilder queryAccountBuilder(SearchAccountCondition condition) {
         //构建查询条件
         return genQueryBuilder(condition);
     }
 
-    public static QueryBuilder queryBuilder(SearchGoodsCondition condition) {
+    public static QueryBuilder queryGoodsBuilder(SearchGoodsCondition condition) {
         //构建查询条件
+        return genQueryBuilder(condition);
+    }
+
+
+    public static QueryBuilder queryLogBuilder(SearchLogCondition condition) {
         return genQueryBuilder(condition);
     }
 
@@ -80,4 +86,5 @@ public class ElasticSearchHelper {
         }
         return boolQueryBuilder.hasClauses() ? boolQueryBuilder : matchAllQuery();
     }
+
 }

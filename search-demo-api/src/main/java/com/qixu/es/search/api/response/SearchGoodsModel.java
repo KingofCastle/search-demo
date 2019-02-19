@@ -1,24 +1,17 @@
-package com.qixu.es.search.api.dto;
-
-
-import com.qixu.es.search.api.annotation.EsSearch;
-import com.qixu.es.search.api.annotation.QueryMethod;
-import com.qixu.es.search.api.dto.SearchCondition;
+package com.qixu.es.search.api.response;
 
 /**
  * @author castle
- * @date 2018/10/22
+ * @date 2018/8/16
+ * 商品good
  **/
-public class SearchGoodsCondition extends SearchCondition {
-    @EsSearch(method = QueryMethod.TERM)
+public class SearchGoodsModel {
     private Integer merchantId;
-    @EsSearch(method = QueryMethod.TERM)
     private String goodsId;
-    @EsSearch(method = QueryMethod.TERM)
+    private String unit;
     private Long storeId;
-    @EsSearch(method = QueryMethod.TERM)
     private String barcode;
-    @EsSearch(method = QueryMethod.MATCH)
+    private Double price;
     private String name;
 
     public Integer getMerchantId() {
@@ -37,6 +30,14 @@ public class SearchGoodsCondition extends SearchCondition {
         this.goodsId = goodsId;
     }
 
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
     public Long getStoreId() {
         return storeId;
     }
@@ -53,6 +54,14 @@ public class SearchGoodsCondition extends SearchCondition {
         this.barcode = barcode;
     }
 
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
     public String getName() {
         return name;
     }
@@ -63,11 +72,13 @@ public class SearchGoodsCondition extends SearchCondition {
 
     @Override
     public String toString() {
-        return "SearchGoodsCondition{" +
+        return "SearchGoodsModel{" +
                 "merchantId=" + merchantId +
                 ", goodsId='" + goodsId + '\'' +
+                ", unit='" + unit + '\'' +
                 ", storeId=" + storeId +
                 ", barcode='" + barcode + '\'' +
+                ", price=" + price +
                 ", name='" + name + '\'' +
                 '}';
     }

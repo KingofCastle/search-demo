@@ -1,8 +1,8 @@
 package com.qixu.es.search.impl;
 
 
-import com.qixu.es.search.api.dto.SearchAccountModel;
-import com.qixu.es.search.api.dto.SearchSet;
+import com.qixu.es.search.api.response.SearchAccountModel;
+import com.qixu.es.search.api.request.SearchSet;
 import com.qixu.es.search.api.dto.PageDTO;
 
 /**

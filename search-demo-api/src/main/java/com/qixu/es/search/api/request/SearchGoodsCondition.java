@@ -1,17 +1,23 @@
-package com.qixu.es.search.api.dto;
+package com.qixu.es.search.api.request;
+
+
+import com.qixu.es.search.api.annotation.EsSearch;
+import com.qixu.es.search.api.annotation.QueryMethod;
 
 /**
  * @author castle
- * @date 2018/8/16
- * 商品good
+ * @date 2018/10/22
  **/
-public class SearchGoodsModel {
+public class SearchGoodsCondition extends SearchCondition {
+    @EsSearch(method = QueryMethod.TERM)
     private Integer merchantId;
+    @EsSearch(method = QueryMethod.TERM)
     private String goodsId;
-    private String unit;
+    @EsSearch(method = QueryMethod.TERM)
     private Long storeId;
+    @EsSearch(method = QueryMethod.TERM)
     private String barcode;
-    private Double price;
+    @EsSearch(method = QueryMethod.MATCH)
     private String name;
 
     public Integer getMerchantId() {
@@ -30,14 +36,6 @@ public class SearchGoodsModel {
         this.goodsId = goodsId;
     }
 
-    public String getUnit() {
-        return unit;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
-    }
-
     public Long getStoreId() {
         return storeId;
     }
@@ -54,14 +52,6 @@ public class SearchGoodsModel {
         this.barcode = barcode;
     }
 
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
     public String getName() {
         return name;
     }
@@ -72,13 +62,11 @@ public class SearchGoodsModel {
 
     @Override
     public String toString() {
-        return "SearchGoodsModel{" +
+        return "SearchGoodsCondition{" +
                 "merchantId=" + merchantId +
                 ", goodsId='" + goodsId + '\'' +
-                ", unit='" + unit + '\'' +
                 ", storeId=" + storeId +
                 ", barcode='" + barcode + '\'' +
-                ", price=" + price +
                 ", name='" + name + '\'' +
                 '}';
     }

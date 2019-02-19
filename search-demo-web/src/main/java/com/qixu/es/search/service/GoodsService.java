@@ -1,6 +1,6 @@
 package com.qixu.es.search.service;
 
-import com.qixu.es.search.api.dto.SearchGoodsModel;
+import com.qixu.es.search.api.response.SearchGoodsModel;
 import com.qixu.es.search.api.dto.PageDTO;
 import com.qixu.es.search.entity.GoodsEntity;
 import com.qixu.es.search.entity.GoodsFrameBarcodeEntity;
@@ -33,6 +33,11 @@ public class GoodsService {
     private GoodsRepository goodsRepository;
     @Autowired
     private GoodsFrameBarcodeRepository barcodeRepository;
+
+    public GoodsEntity findGoodsByGoodsId(Long merchantId,String goodsId) {
+        return goodsRepository.findByMerchantIdAndGoodsId(merchantId,goodsId);
+    }
+
 
     public List<GoodsEntity> findGoods(Long merchantId) {
         return goodsRepository.findBymerchantId(merchantId);

@@ -3,7 +3,6 @@ package com.qixu.es.search.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.stereotype.Component;
 
 /**
  * @author castle
@@ -34,6 +33,21 @@ public class SystemConfig {
 
     @Value("${datasource.password}")
     private String dataSourcePassword;
+
+    @Value("${log.es.address.host}")
+    private String logEsAddressHost;
+
+    @Value("${log.cluster.name}")
+    private String logClusterName;
+
+    @Value("${log.es.username}")
+    private String logEsUsername;
+
+    @Value("${log.es.password}")
+    private String logEsPassword;
+
+    @Value("${log.type.name}")
+    private String logTypeName;
 
     public String getEsAddressHostPorts() {
         return esAddressHostPorts;
@@ -105,5 +119,45 @@ public class SystemConfig {
 
     public void setDataSourcePassword(String dataSourcePassword) {
         this.dataSourcePassword = dataSourcePassword;
+    }
+
+    public String getLogEsAddressHost() {
+        return logEsAddressHost;
+    }
+
+    public void setLogEsAddressHost(String logEsAddressHost) {
+        this.logEsAddressHost = logEsAddressHost;
+    }
+
+    public String getLogClusterName() {
+        return logClusterName;
+    }
+
+    public void setLogClusterName(String logClusterName) {
+        this.logClusterName = logClusterName;
+    }
+
+    public String getLogEsUsername() {
+        return logEsUsername;
+    }
+
+    public void setLogEsUsername(String logEsUsername) {
+        this.logEsUsername = logEsUsername;
+    }
+
+    public String getLogEsPassword() {
+        return logEsPassword;
+    }
+
+    public void setLogEsPassword(String logEsPassword) {
+        this.logEsPassword = logEsPassword;
+    }
+
+    public String getLogTypeName() {
+        return logTypeName;
+    }
+
+    public void setLogTypeName(String logTypeName) {
+        this.logTypeName = logTypeName;
     }
 }

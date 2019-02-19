@@ -2,10 +2,10 @@ package com.qixu.es.search.impl;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.qixu.es.search.api.dto.SearchAccountCondition;
-import com.qixu.es.search.api.dto.SearchAccountModel;
-import com.qixu.es.search.api.dto.SearchSet;
-import com.qixu.es.search.api.dto.SortModel;
+import com.qixu.es.search.api.request.SearchAccountCondition;
+import com.qixu.es.search.api.response.SearchAccountModel;
+import com.qixu.es.search.api.request.SearchSet;
+import com.qixu.es.search.api.request.SortModel;
 import com.qixu.es.search.api.dto.PageDTO;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
@@ -47,7 +47,7 @@ public class AccountSearchServiceImpl implements AccountSearchService, Closeable
         SortModel sortModel = searchSet.getSortModel();
 
         //TODO
-        SearchRequestBuilder requestBuilder = initSearch().setQuery(ElasticSearchHelper.queryBuilder(condition))
+        SearchRequestBuilder requestBuilder = initSearch().setQuery(ElasticSearchHelper.queryAccountBuilder(condition))
                 .setFrom((sortModel.getPageNo() - 1) * sortModel.getPageSize()).setSize(sortModel.getPageSize());
 
         SearchResponse response = requestBuilder.get();
@@ -75,6 +75,7 @@ public class AccountSearchServiceImpl implements AccountSearchService, Closeable
     @Override
     public void close() throws IOException {
         if (client != null) {
+            System.out.println("关闭");
             client.close();
         }
     }

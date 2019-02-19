@@ -1,6 +1,10 @@
 package com.qixu.es.search.api;
 
 import com.qixu.es.search.api.dto.*;
+import com.qixu.es.search.api.request.SearchGoodsSet;
+import com.qixu.es.search.api.request.SearchSet;
+import com.qixu.es.search.api.response.SearchAccountModel;
+import com.qixu.es.search.api.response.SearchGoodsModel;
 import org.springframework.web.bind.annotation.PostMapping;
 
 /**
@@ -16,7 +20,7 @@ public interface SearchDemoApi {
      * @return
      */
     @PostMapping(value = "search/goods")
-    PageDTO<SearchAccountModel> searchGoods(SearchGoodsSet searchGoodsSet);
+    PageDTO<SearchGoodsModel> searchGoods(SearchGoodsSet searchGoodsSet);
 
     /**
      * 账号搜索

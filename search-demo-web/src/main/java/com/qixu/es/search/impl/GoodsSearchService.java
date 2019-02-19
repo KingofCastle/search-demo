@@ -1,8 +1,7 @@
 package com.qixu.es.search.impl;
 
-import com.qixu.es.search.api.dto.SearchAccountModel;
-import com.qixu.es.search.api.dto.SearchGoodsModel;
-import com.qixu.es.search.api.dto.SearchGoodsSet;
+import com.qixu.es.search.api.response.SearchGoodsModel;
+import com.qixu.es.search.api.request.SearchGoodsSet;
 import com.qixu.es.search.api.dto.PageDTO;
 
 /**
@@ -17,5 +16,5 @@ public interface GoodsSearchService {
      */
     void indexGoods(SearchGoodsModel goods);
 
-    PageDTO<SearchAccountModel> search(SearchGoodsSet searchGoodsSet);
+    PageDTO<SearchGoodsModel> search(SearchGoodsSet searchGoodsSet);
 }

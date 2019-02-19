@@ -10,4 +10,6 @@ import java.util.List;
 public interface GoodsRepository extends JpaRepository<GoodsEntity, Long>, JpaSpecificationExecutor<GoodsEntity> {
 
     List<GoodsEntity> findBymerchantId(Long merchantId);
+
+    GoodsEntity findByMerchantIdAndGoodsId(Long merchantId, String goodsId);
 }

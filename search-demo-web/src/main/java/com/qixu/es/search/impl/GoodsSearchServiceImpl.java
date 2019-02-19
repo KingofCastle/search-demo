@@ -3,6 +3,10 @@ package com.qixu.es.search.impl;
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qixu.es.search.api.dto.*;
+import com.qixu.es.search.api.request.SearchGoodsCondition;
+import com.qixu.es.search.api.request.SearchGoodsSet;
+import com.qixu.es.search.api.request.SortModel;
+import com.qixu.es.search.api.response.SearchGoodsModel;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.update.UpdateRequestBuilder;
@@ -45,7 +49,7 @@ public class GoodsSearchServiceImpl implements GoodsSearchService {
     }
 
     @Override
-    public PageDTO<SearchAccountModel> search(SearchGoodsSet searchGoodsSet) {
+    public PageDTO<SearchGoodsModel> search(SearchGoodsSet searchGoodsSet) {
         logger.info("begin search goods:{}", searchGoodsSet.toString());
         //取得搜索条件
         SearchGoodsCondition condition = searchGoodsSet.getSearchGoodsCondition();
@@ -53,7 +57,7 @@ public class GoodsSearchServiceImpl implements GoodsSearchService {
         SortModel sortModel = searchGoodsSet.getSortModel();
 
         //TODO
-        SearchRequestBuilder requestBuilder = initSearch().setQuery(ElasticSearchHelper.queryBuilder(condition))
+        SearchRequestBuilder requestBuilder = initSearch().setQuery(ElasticSearchHelper.queryGoodsBuilder(condition))
                 .setFrom((sortModel.getPageNo() - 1) * sortModel.getPageSize()).setSize(sortModel.getPageSize());
 
         SearchResponse response = requestBuilder.get();
